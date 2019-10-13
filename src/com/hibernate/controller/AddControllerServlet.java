@@ -42,6 +42,7 @@ public class AddControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -89,6 +90,7 @@ public class AddControllerServlet extends HttpServlet {
 					request.setAttribute("listUser",listUser);
 					RequestDispatcher requestDispatcher2 = request.getRequestDispatcher("adminform.jsp");
 					requestDispatcher2.forward(request, response);
+					
 				}
 				
 			// update User 	

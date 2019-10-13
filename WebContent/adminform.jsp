@@ -37,7 +37,7 @@
          			 </c:if>            
 					<c:if test="${user ==null}">
 					<div class="control-group">
-						<label>Tên</label>
+						<label>Tên</label> <span style="color:red">(*)</span>
 					</div>
 					<div class="control-group">
 						<div
@@ -56,7 +56,7 @@
 					
 					<c:if test="${user.password1 ==null}">
 					<div class="control-group">
-						<label>Mật khẩu</label>
+						<label>Mật khẩu</label> <span style="color:red">(*)</span>
 					</div>
 					<div class="control-group">
 						<div
@@ -68,7 +68,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>Nhập lại mật khẩu</label>
+						<label>Nhập lại mật khẩu</label> <span style="color:red">(*)</span>
 					</div>
 					<div class="control-group">
 						<div
@@ -86,7 +86,7 @@
 					
 					
 					<div class="control-group">
-						<label>Email</label>
+						<label>Email <span style="color:red">(*)</span></label>
 					</div>
 					<div class="control-group">
 						<div
@@ -97,7 +97,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>Điện thoại</label>
+						<label>Điện thoại <span style="color:red">(*)</span></label>
 					</div>
 					<div class="control-group">
 						<div
@@ -107,7 +107,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>Thành phố</label>
+						<label>Thành phố <span style="color:red">(*)</span></label>
 					</div>
 					<div class="control-group">
 						<div
@@ -172,7 +172,7 @@
 								<td style="text-align:center">
 									 <form action="<c:url value="delete"/>" method="post">
                        				 <input type="hidden" name="id" value="${user.id}">
-                        			 <input class="btn btn-danger" id="btnDelete" type="submit" value="Xóa" onclick="return confirm('You delete items ?')">
+                        			 <input class="btn btn-danger" id="btnDelete" type="submit" value="Xóa" onclick="return confirm('Bạn có muốn xóa admin ?')">
                     				 </form>
 								</td>
 							</tr>
@@ -212,6 +212,8 @@
 								.submit(
 										function(e) {
 											var username = $('#username').val();
+											var password1 = $('#password1').val();
+											var password2 = $('#password2').val();
 											var valid = true;
 											$(".error").remove();
 											if (username.length < 1) {
@@ -230,7 +232,24 @@
 													valid = false;
 												}
 											}
-											
+											if (password1.length < 1) {
+												$('#password1')
+														.after(
+																'<span class="error" style="color:red">This field is required</span>');
+												valid = false;
+											}
+											if (password2.length < 1) {
+												$('#password2')
+														.after(
+																'<span class="error" style="color:red">This field is required</span>');
+												valid = false;
+											}
+											if(password2 != password1){
+												$('#password2')
+												.after(
+														'<span class="error" style="color:red">password 2 must be the same as password 1</span>');
+												 valid = false;
+											}
 											return valid;
 										});
 					});
