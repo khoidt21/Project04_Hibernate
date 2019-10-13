@@ -97,7 +97,12 @@
 							id="sendMessageButton"
 						>Update</button>
 						</c:if>
+						<button type="button" class="btn btn-danger btn-sm" name="back" onclick="history.back()">Cancel</button>
 					</div>
+					
+						
+					
+					
 				</form>
 			</div>
 		</div>
