@@ -3,7 +3,8 @@
 <%@page import="java.util.List"%>
 <%@ include file="header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!-- Contact Section -->
 <section class="page-section" id="contact">
@@ -21,12 +22,12 @@
 				</c:if>
 					<c:if test="${news !=null}">
 						<div class="control-group">
-						<h5 style="color: red; font-weight: bold">UPDATE NEW</h5>
+						<h5 style="color: red; font-weight: bold">Cập nhập tin tức</h5>
 						</div>
 					</c:if>
 					<c:if test="${news ==null}">
 						<div class="control-group">
-						<h5 style="color: red; font-weight: bold;">ADD NEW</h5>
+						<h5 style="color: red; font-weight: bold;">Thêm tin tức</h5>
 					</div>	
 					</c:if>
 					 <c:if test="${news != null}">
@@ -75,12 +76,10 @@
 							<input class="form-control" type="text" id="author" name="author" value="<c:out value='${news.author}' />" />
 						</div>
 					</div>
-					<div class="control-group">
-						<label>Released</label>
-					</div>
 					<div class="form-group controls mb-0 pb-2"
 						>
-						<input type="checkbox" name="released" id="released"> Đã xuất bản
+						<input type="checkbox" name="released" id="released" <c:if test="${news.released==1}">checked=checked</c:if>> Đã xuất bản
+						
 						</div>
 						
 					<div class="control-group">

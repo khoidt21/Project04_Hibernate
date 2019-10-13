@@ -4,9 +4,8 @@
 <%@ include file="header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- Contact Section -->
 <section class="page-section" id="contact">
 	<div class="container">
@@ -14,7 +13,7 @@
 		<!------list user------->
 		<div class="row">
 			<div class="col-lg-12 mx-auto" style="margin-top: 20px">
-				<a href="addeditnew.jsp">Add New</a>
+				<a href="addeditnew.jsp">Thêm mới tin tức</a>
 				<p>
 					<%
 						if (request.getAttribute("msg") != null) {
@@ -22,48 +21,56 @@
 						}
 					%>
 				</p>
-				Tuổi trẻ
-				
-				Tuấn Hồ Quang Hiếu
-				
-				
-				<h3>List of News</h3>
+				<h3>Danh sách tin tức</h3>
 				<div class="table-responsive">
-					<table style="width: 100%">
+					<table class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Title</th>
-								<th>Description</th>
-								<th>Content</th>
-								<th>Date</th>
-								<th>Author</th>
-								<th>Edit</th>
-								<th>Delete</th>
+								<th>Tiêu đề</th>
+								<th>Tác giả</th>
+								<th>Xuất bản & Nháp</th>
+								<th>Ngày</th>
+								<th style="text-align:center">Xem</th>
+								<th style="text-align:center">Sửa</th>
+								<th style="text-align:center">Xóa</th>
 							</tr>
 						</thead>
 						<c:forEach items="${listNew}" var="news">
 							<tr>
 								<td><c:out value="${news.id}" /></td>
 								<td><c:out value="${news.title}" /></td>
-								<td><c:out value="${news.description}" /></td>
-								<td><c:out value="${news.content}" escapeXml="false" /></td>
+								<td><c:out value="${news.author}" /></td>
+								<td>
+									<c:if test="${news.released==1}">
+										  <c:out value="Đã xuất bản"/>
+									</c:if>
+									<c:if test="${news.released==0}">
+										  <c:out value="Nháp"/>	
+									</c:if>
+								</td>
 								<td><fmt:formatDate value="${news.publisher}"
 										var="formattedDate" type="date" pattern="MM-dd-yyyy"
 									/> <c:out value="${formattedDate}" /></td>
-								<td><c:out value="${news.author}" /></td>
-								<td>
+								<td style="text-align:center">
+									<form action="<c:url value="viewnew"/>" method="post">
+										<input type="hidden" name="id" value="${news.id}"> <input
+											type="submit" class="btn btn-primary" value="Xem"
+										>
+									</form>
+								</td>		
+								<td style="text-align:center">
 									<form action="<c:url value="editnew"/>" method="post">
 										<input type="hidden" name="id" value="${news.id}"> <input
-											type="submit" class="btn btn-primary" value="Edit"
+											type="submit" class="btn btn-primary" value="Sửa"
 										>
 									</form>
 								</td>
-								<td>
+								<td style="text-align:center">
 									<form action="<c:url value="deletenew"/>" method="post">
 										<input type="hidden" name="id" value="${news.id}"> <input
 											class="btn btn-danger" id="btnDelete" type="submit"
-											value="Delete" onclick="return confirm('Do you want to delete the news ?')"
+											value="Xóa" onclick="return confirm('Bạn có muốn xóa tin tức ?')"
 										>
 									</form>
 								</td>

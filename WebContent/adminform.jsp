@@ -3,6 +3,9 @@
 <%@page import="java.util.List"%>
 <%@ include file="header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"
+%>
 <!-- Contact Section -->
 <section class="page-section" id="contact">
 	<div class="container">
@@ -21,12 +24,12 @@
 				</c:if>
 					<c:if test="${user !=null}">
 						<div class="control-group">
-						<h5 style="color: red; font-weight: bold">UPDATE ADMIN</h5>
+						<h5 style="color: red; font-weight: bold">Cập nhập Admin</h5>
 						</div>
 					</c:if>
 					<c:if test="${user ==null}">
 						<div class="control-group">
-						<h5 style="color: red; font-weight: bold;">REGISTER ADMIN</h5>
+						<h5 style="color: red; font-weight: bold;">Đăng ký Admin</h5>
 					</div>	
 					</c:if>
 					 <c:if test="${user != null}">
@@ -34,7 +37,7 @@
          			 </c:if>            
 					<c:if test="${user ==null}">
 					<div class="control-group">
-						<label>Name</label>
+						<label>Tên</label>
 					</div>
 					<div class="control-group">
 						<div
@@ -53,7 +56,7 @@
 					
 					<c:if test="${user.password1 ==null}">
 					<div class="control-group">
-						<label>Password</label>
+						<label>Mật khẩu</label>
 					</div>
 					<div class="control-group">
 						<div
@@ -65,7 +68,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>Confirm Password</label>
+						<label>Nhập lại mật khẩu</label>
 					</div>
 					<div class="control-group">
 						<div
@@ -94,7 +97,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>Phone</label>
+						<label>Điện thoại</label>
 					</div>
 					<div class="control-group">
 						<div
@@ -104,7 +107,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>City</label>
+						<label>Thành phố</label>
 					</div>
 					<div class="control-group">
 						<div
@@ -136,21 +139,21 @@
 		<c:if test="${user == null}">
 		<div class="row">
 			<div class="col-lg-8 mx-auto" style="margin-top: 20px">
-				<h5>List of Administrator</h5>
+				<h5>Danh sách Administrator</h5>
 				<% if(null !=request.getAttribute("addsuccess")){
 					out.println("addsuccess");
 				} %>
 				<div class="table-responsive">
-					<table style="width: 100%">
+					<table class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>User_Name</th>
+								<th>Tên</th>
 								<th>Email</th>
-								<th>Phone</th>
-								<th>City</th>
-								<th>Edit</th>
-								<th>Delete</th>
+								<th>Điện thoại</th>
+								<th>Thành phố</th>
+								<th style="text-align:center">Sửa</th>
+								<th style="text-align:center">Xóa</th>
 							</tr>
 						</thead>
 						<c:forEach items="${listUser}" var="user">
@@ -160,16 +163,16 @@
 								<td><c:out value="${user.email}" /></td>
 								<td><c:out value="${user.phone}" /></td>
 								<td><c:out value="${user.city}" /></td>
-								<td>
+								<td style="text-align:center">
 									<form action="<c:url value="edit"/>" method="post">
 			                        <input type="hidden" name="id" value="${user.id}">
-			                        <input type="submit" class="btn btn-primary" value="Edit">
+			                        <input type="submit" class="btn btn-primary" value="Sửa">
 			                    	</form>
 								</td>
-								<td>
+								<td style="text-align:center">
 									 <form action="<c:url value="delete"/>" method="post">
                        				 <input type="hidden" name="id" value="${user.id}">
-                        			 <input class="btn btn-danger" id="btnDelete" type="submit" value="Delete" onclick="return confirm('You delete items ?')">
+                        			 <input class="btn btn-danger" id="btnDelete" type="submit" value="Xóa" onclick="return confirm('You delete items ?')">
                     				 </form>
 								</td>
 							</tr>

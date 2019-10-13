@@ -86,8 +86,14 @@ public class NewControllerServlet extends HttpServlet {
 			String author = request.getParameter("author");
 			java.util.Date myDate = new java.util.Date();
 			java.sql.Date publisher = new java.sql.Date(myDate.getTime());
-			int released = Integer.parseInt(request.getParameter("released"));
-			
+			int released;
+			String checkbox = request.getParameter("released");
+			if(checkbox !=null) {
+				released = 1;
+			}
+			else {
+				released = 0;
+			}
 			try {	
 				News news = new News(title, description, content,publisher, author,released);
 				newDAO.addNew(news);

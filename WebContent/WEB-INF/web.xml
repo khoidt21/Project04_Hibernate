@@ -21,7 +21,6 @@
     <servlet-name>UserController</servlet-name>
     <url-pattern>/usercontroller</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>NewController</servlet-name>
     <servlet-class>com.hibernate.controller.NewController</servlet-class>
@@ -30,7 +29,6 @@
     <servlet-name>NewController</servlet-name>
     <url-pattern>/newcontroller</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>add</servlet-name>
     <servlet-class>com.hibernate.controller.AddControllerServlet</servlet-class>
@@ -39,7 +37,6 @@
     <servlet-name>add</servlet-name>
     <url-pattern>/add</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>addnew</servlet-name>
     <servlet-class>com.hibernate.controller.NewControllerServlet</servlet-class>
@@ -48,8 +45,7 @@
     <servlet-name>addnew</servlet-name>
     <url-pattern>/addnew</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <servlet-name>editnew</servlet-name>
     <servlet-class>com.hibernate.controller.NewControllerServlet</servlet-class>
   </servlet>
@@ -57,8 +53,7 @@
     <servlet-name>editnew</servlet-name>
     <url-pattern>/editnew</url-pattern>
   </servlet-mapping>
- 
- <servlet>
+  <servlet>
     <servlet-name>updatenew</servlet-name>
     <servlet-class>com.hibernate.controller.NewControllerServlet</servlet-class>
   </servlet>
@@ -66,8 +61,15 @@
     <servlet-name>updatenew</servlet-name>
     <url-pattern>/updatenew</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
+    <servlet-name>viewnew</servlet-name>
+    <servlet-class>com.hibernate.controller.ViewNewControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewnew</servlet-name>
+    <url-pattern>/viewnew</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>deletenew</servlet-name>
     <servlet-class>com.hibernate.controller.NewControllerServlet</servlet-class>
   </servlet>
@@ -75,8 +77,7 @@
     <servlet-name>deletenew</servlet-name>
     <url-pattern>/deletenew</url-pattern>
   </servlet-mapping>
-    
-    <servlet>
+  <servlet>
     <servlet-name>loadnew</servlet-name>
     <servlet-class>com.hibernate.controller.NewControllerServlet</servlet-class>
   </servlet>
@@ -84,7 +85,6 @@
     <servlet-name>loadnew</servlet-name>
     <url-pattern>/loadnew</url-pattern>
   </servlet-mapping>
-    
   <servlet>
     <servlet-name>edit</servlet-name>
     <servlet-class>com.hibernate.controller.AddControllerServlet</servlet-class>
@@ -126,17 +126,15 @@
     <url-pattern>/success</url-pattern>
   </servlet-mapping>
   <filter-mapping>
-      <filter-name>EncodingFilter</filter-name>
-      <url-pattern>/*</url-pattern>
-   </filter-mapping>
-<filter>
     <filter-name>EncodingFilter</filter-name>
-        <filter-class>com.hibernate.lib.EncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-  
-  
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>com.hibernate.lib.EncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
 </web-app>
