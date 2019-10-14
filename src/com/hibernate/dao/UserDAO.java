@@ -123,22 +123,35 @@ public class UserDAO {
 				e.printStackTrace();
 			}
 	}
-	public void deleteUser(int id) {
+	// delete user xoa nhung user khong dang nhap 
+	// user dang dang nhap khong xoa duoc
+	public boolean deleteUser(int id,String userName) {
 			Transaction transaction = null;
+			
+			//System.out.println("-------------" + userName);
+			
 			try {
 				Session session = sessionFactory.openSession();
 				transaction = session.beginTransaction();
 				User user = (User) session.get(User.class,id);
-				session.delete(user);
-				transaction.commit();
+				List<User> listUser = null;
+				listUser = session.createQuery("FROM User").list();
+				Iterator<User> iterator = listUser.iterator();
+				while(iterator.hasNext()) {
+					if(iterator.next().getUserName().equals(userName)) {
+						 return false;
+					}
+				}
 				
+				session.delete(user);
+				transaction.commit();	
 			}
 			catch (Exception e) {
-				// TODO: handle exception
 				if(transaction !=null) {
 					transaction.rollback();
 				}
 				e.printStackTrace();
 			}
+			return true;
 	}
 }

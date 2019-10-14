@@ -174,6 +174,7 @@
 								<td style="text-align:center">
 									 <form action="<c:url value="delete"/>" method="post">
                        				 <input type="hidden" name="id" value="${user.id}">
+                       				 <input type="hidden" name="uName" value="${user.userName}">
                         			 <input class="btn btn-danger" id="btnDelete" type="submit" value="Xóa" onclick="return confirm('Bạn có muốn xóa admin ?')">
                     				 </form>
 								</td>
