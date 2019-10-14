@@ -123,7 +123,7 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
 	// delete user xoa nhung user khong dang nhap
 	// user dang dang nhap khong xoa duoc
 	public boolean deleteUser(int id, String uLogin) {

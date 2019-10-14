@@ -123,29 +123,21 @@ public class UserControllerServlet extends HttpServlet {
 			UserDAO userDAO = new UserDAO();
 			String userId = request.getParameter("id");
 			String uLogin = request.getParameter("userLogin");
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminform.jsp");
-					
-//			userDAO.deleteUser(Integer.parseInt(userId),userName);
-			//List<User> listUser = userDAO.getAllUser();
-//			request.setAttribute("listUser",listUser);
-//			request.setAttribute("msg","Xóa admin thành công.");
-//			requestDispatcher.forward(request, response);
-			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminform.jsp");			
 			boolean flag = false;
 			
 		    flag = userDAO.deleteUser(Integer.parseInt(userId), uLogin);
 			if(flag == false) {
-				//System.out.println("xoa loi");
-				
+	
 				List<User> listUser = userDAO.getAllUser();
 				request.setAttribute("listUser",listUser);
-				request.setAttribute("msg","Xóa admin lỗi.");
+				request.setAttribute("msg","Admin đang đăng nhập không xóa được.");
 				requestDispatcher.forward(request, response);
 			}
 			else {
 				List<User> listUser = userDAO.getAllUser();
 				request.setAttribute("listUser",listUser);
-				request.setAttribute("msg","Xóa admin ok.");
+				request.setAttribute("msg","Xóa admin thành công.");
 				requestDispatcher.forward(request, response);
 			}
 		}
