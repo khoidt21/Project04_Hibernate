@@ -122,7 +122,7 @@ public class UserControllerServlet extends HttpServlet {
 		try {
 			UserDAO userDAO = new UserDAO();
 			String userId = request.getParameter("id");
-			String userName = request.getParameter("uName");
+			String uLogin = request.getParameter("userLogin");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminform.jsp");
 					
 //			userDAO.deleteUser(Integer.parseInt(userId),userName);
@@ -133,12 +133,20 @@ public class UserControllerServlet extends HttpServlet {
 			
 			boolean flag = false;
 			
-		    flag = userDAO.deleteUser(Integer.parseInt(userId), userName);
+		    flag = userDAO.deleteUser(Integer.parseInt(userId), uLogin);
 			if(flag == false) {
-				System.out.println("xoa ok");
+				//System.out.println("xoa loi");
+				
+				List<User> listUser = userDAO.getAllUser();
+				request.setAttribute("listUser",listUser);
+				request.setAttribute("msg","Xóa admin lỗi.");
+				requestDispatcher.forward(request, response);
 			}
 			else {
-				System.out.println("xoa loi");
+				List<User> listUser = userDAO.getAllUser();
+				request.setAttribute("listUser",listUser);
+				request.setAttribute("msg","Xóa admin ok.");
+				requestDispatcher.forward(request, response);
 			}
 		}
 		catch (Exception ex) {

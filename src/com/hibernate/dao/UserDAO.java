@@ -29,7 +29,9 @@ public class UserDAO {
 		transaction = session.beginTransaction();
 		if (session != null) {
 			try {
-				List<User> list = session.createQuery("FROM User where user_name='" + userName + "' and password='" + password + "'").list();
+				List<User> list = session
+						.createQuery("FROM User where user_name='" + userName + "' and password='" + password + "'")
+						.list();
 				Iterator iterator = list.iterator();
 				while (iterator.hasNext()) {
 					User user = (User) iterator.next();
@@ -37,7 +39,7 @@ public class UserDAO {
 						return true;
 					}
 				}
-				
+
 			} catch (Exception e) {
 				System.out.println("Error session query " + e.getMessage());
 				return false;
@@ -47,23 +49,21 @@ public class UserDAO {
 		}
 		return false;
 	}
-	
-	public List<User> getAllUser(){
+
+	public List<User> getAllUser() {
 		Transaction transaction = null;
 		List<User> listUser = null;
-		Session session = sessionFactory.openSession();	
+		Session session = sessionFactory.openSession();
 		try {
 			transaction = session.beginTransaction();
 			listUser = session.createQuery("FROM User").list();
 			transaction.commit();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return listUser;
 	}
-	
-	
+
 	public boolean addUser(User user) {
 		try {
 			Session session = sessionFactory.openSession();
@@ -71,9 +71,9 @@ public class UserDAO {
 			List<User> listUser = null;
 			listUser = session.createQuery("FROM User").list();
 			Iterator<User> iterator = listUser.iterator();
-			while(iterator.hasNext()) {
-				if(iterator.next().getUserName().equals(user.getUserName())) {
-					 return false;
+			while (iterator.hasNext()) {
+				if (iterator.next().getUserName().equals(user.getUserName())) {
+					return false;
 				}
 			}
 			session.save(user);
@@ -83,89 +83,75 @@ public class UserDAO {
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 			System.out.println("error");
-			
+
 		}
 		return true;
 	}
+
 	public User getUser(int id) {
 
-	        Transaction transaction = null;
-	        User user = null;
-	        try {
-	        	Session session = sessionFactory.openSession();
-	            transaction = session.beginTransaction();
-	            user = (User)session.get(User.class, id);
-	            
-	            transaction.commit();
-	        } catch (Exception e) {
-	            if (transaction != null) {
-	                transaction.rollback();
-	            }
-	            e.printStackTrace();
-	        }
-	        return user;
+		Transaction transaction = null;
+		User user = null;
+		try {
+			Session session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			user = (User) session.get(User.class, id);
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return user;
 	}
-	
-	// update information User 
+
+	// update information User
 	public void updateUser(User user) {
-			Transaction transaction = null;
-			try {
-				Session session = sessionFactory.openSession();
-				transaction = session.beginTransaction();
-				session.update(user);
+		Transaction transaction = null;
+		try {
+			Session session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			session.update(user);
+			transaction.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+
+	// delete user xoa nhung user khong dang nhap
+	// user dang dang nhap khong xoa duoc
+	public boolean deleteUser(int id, String uLogin) {
+		Transaction transaction = null;
+		try {
+			Session session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			boolean flagDel = false;
+			List<User> listUser = session.createQuery("FROM User where id ='" + id + "'").list();
+			Iterator<User> iterator = listUser.iterator();
+			while (iterator.hasNext()) {
+				User user = iterator.next();
+				if (!uLogin.equals(user.getUserName())) {
+					flagDel = true;
+				}
+			}
+			if (flagDel) {
+				User user1 = (User) session.get(User.class, id);
+				session.delete(user1);
 				transaction.commit();
 			}
-			catch (Exception e) {
-				// TODO: handle exception
-				if(transaction !=null) {
-					transaction.rollback();
-				}
-				e.printStackTrace();
+
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
 			}
-	}
-	// delete user xoa nhung user khong dang nhap 
-	// user dang dang nhap khong xoa duoc
-	public boolean deleteUser(int id,String userName) {
-			Transaction transaction = null;
-			
-			
-			try {
-				Session session = sessionFactory.openSession();
-				transaction = session.beginTransaction();
-				
-				List<User> listUser = session.createQuery("FROM User where id ='" + id + "'").list();
-			    Iterator<User> iterator = listUser.iterator();
-			    while(iterator.hasNext()) {
-			    	
-			    System.out.println("=============="+ userName);
-			    User user = iterator.next();
-			    System.out.println("===================++++++" + user.getUserName());
-			    
-			    if(!userName.equals(user.getUserName())) {
-			    	User user1 = (User) session.get(User.class,id);
-				    session.delete(user1);
-				    transaction.commit();
-					return false;
-			    }
-//			    	//System.out.println(iterator.next().getUserName());
-//			    	
-//			    	
-//			    	if(!iterator.next().getUserName().toString().equals(userName)) {
-//			    		User user = (User) session.get(User.class,id);
-//					    session.delete(user);
-//						transaction.commit();
-//						return false;
-//			    	}
-			    }
-			    
-			    
-			}
-			catch (Exception e) {
-				if(transaction !=null) {
-					transaction.rollback();
-				}
-				e.printStackTrace();
-			}
-			return true;
+			e.printStackTrace();
+		}
+		return true;
 	}
 }

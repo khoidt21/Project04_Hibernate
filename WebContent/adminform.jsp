@@ -172,9 +172,20 @@
 			                    	</form>
 								</td>
 								<td style="text-align:center">
+									 <%
+								if (session.getAttribute("username") == null) {
+									response.sendRedirect("login.jsp");
+								}
+								String userLogin = (String) session.getAttribute("username");
+								
+								// lay tu sé
+							%>
+							
+							
 									 <form action="<c:url value="delete"/>" method="post">
                        				 <input type="hidden" name="id" value="${user.id}">
-                       				 <input type="hidden" name="uName" value="${user.userName}">
+                       				 <input type="hidden" name="userLogin" value=" <%=username%>">
+                       				 
                         			 <input class="btn btn-danger" id="btnDelete" type="submit" value="Xóa" onclick="return confirm('Bạn có muốn xóa admin ?')">
                     				 </form>
 								</td>
