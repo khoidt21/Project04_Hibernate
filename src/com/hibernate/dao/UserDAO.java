@@ -128,23 +128,37 @@ public class UserDAO {
 	public boolean deleteUser(int id,String userName) {
 			Transaction transaction = null;
 			
-			//System.out.println("-------------" + userName);
 			
 			try {
 				Session session = sessionFactory.openSession();
 				transaction = session.beginTransaction();
-				User user = (User) session.get(User.class,id);
-				List<User> listUser = null;
-				listUser = session.createQuery("FROM User").list();
-				Iterator<User> iterator = listUser.iterator();
-				while(iterator.hasNext()) {
-					if(iterator.next().getUserName().equals(userName)) {
-						 return false;
-					}
-				}
 				
-				session.delete(user);
-				transaction.commit();	
+				List<User> listUser = session.createQuery("FROM User where id ='" + id + "'").list();
+			    Iterator<User> iterator = listUser.iterator();
+			    while(iterator.hasNext()) {
+			    	
+			    System.out.println("=============="+ userName);
+			    User user = iterator.next();
+			    System.out.println("===================++++++" + user.getUserName());
+			    
+			    if(!userName.equals(user.getUserName())) {
+			    	User user1 = (User) session.get(User.class,id);
+				    session.delete(user1);
+				    transaction.commit();
+					return false;
+			    }
+//			    	//System.out.println(iterator.next().getUserName());
+//			    	
+//			    	
+//			    	if(!iterator.next().getUserName().toString().equals(userName)) {
+//			    		User user = (User) session.get(User.class,id);
+//					    session.delete(user);
+//						transaction.commit();
+//						return false;
+//			    	}
+			    }
+			    
+			    
 			}
 			catch (Exception e) {
 				if(transaction !=null) {

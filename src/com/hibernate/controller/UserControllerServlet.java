@@ -125,19 +125,21 @@ public class UserControllerServlet extends HttpServlet {
 			String userName = request.getParameter("uName");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminform.jsp");
 					
-			if(!userDAO.deleteUser(Integer.parseInt(userId),userName)) {
-				request.setAttribute("msg","Không xóa được admin đang đăng nhập");
-				requestDispatcher.forward(request, response);
+//			userDAO.deleteUser(Integer.parseInt(userId),userName);
+			//List<User> listUser = userDAO.getAllUser();
+//			request.setAttribute("listUser",listUser);
+//			request.setAttribute("msg","Xóa admin thành công.");
+//			requestDispatcher.forward(request, response);
+			
+			boolean flag = false;
+			
+		    flag = userDAO.deleteUser(Integer.parseInt(userId), userName);
+			if(flag == false) {
+				System.out.println("xoa ok");
 			}
 			else {
-				
-					List<User> listUser = userDAO.getAllUser();
-					request.setAttribute("listUser",listUser);
-					request.setAttribute("msg","Xóa admin thành công.");
-					requestDispatcher.forward(request, response);		
-				}
-				
-			
+				System.out.println("xoa loi");
+			}
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
