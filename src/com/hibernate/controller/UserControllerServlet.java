@@ -86,14 +86,20 @@ public class UserControllerServlet extends HttpServlet {
 		try {		
 			User user = new User(userName, password1, email, phone, city);
 			UserDAO userDao = new UserDAO();
-			userDao.addUser(user);
-			
+			//userDao.addUser(user);
+			if(userDao.addUser(user)) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminform.jsp");
 			String mgs = "Thêm admin thành công";
 			List<User> listUser = userDao.getAllUser();
 			request.setAttribute("listUser",listUser);
 			request.setAttribute("msg",mgs);
 			requestDispatcher.forward(request, response);
+			}
+			else {
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminform.jsp");
+				request.setAttribute("msg","Tên admin đã có trong cơ sở dữ liệu");
+				requestDispatcher.forward(request, response);
+			}
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

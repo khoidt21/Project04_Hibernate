@@ -64,10 +64,18 @@ public class UserDAO {
 	}
 	
 	
-	public void addUser(User user) {
+	public boolean addUser(User user) {
 		try {
 			Session session = sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
+			List<User> listUser = null;
+			listUser = session.createQuery("FROM User").list();
+			Iterator<User> iterator = listUser.iterator();
+			while(iterator.hasNext()) {
+				if(iterator.next().getUserName().equals(user.getUserName())) {
+					 return false;
+				}
+			}
 			session.save(user);
 			transaction.commit();
 			System.out.println("\n\n Add User Success \n");
@@ -75,7 +83,9 @@ public class UserDAO {
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 			System.out.println("error");
+			
 		}
+		return true;
 	}
 	public User getUser(int id) {
 
