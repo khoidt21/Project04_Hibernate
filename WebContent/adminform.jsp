@@ -140,7 +140,7 @@
 		<!------list user------->
 		<c:if test="${user == null}">
 			<div class="row">
-				<div class="col-lg-12 mx-auto" style="margin-top: 20px">
+				<div class="col-lg-8 mx-auto" style="margin-top: 20px">
 					<h5>Danh sách Administrator</h5>
 					<%
 						if (request.getAttribute("msg") != null) {
@@ -167,14 +167,14 @@
 									<td><c:out value="${user.email}" /></td>
 									<td><c:out value="${user.phone}" /></td>
 									<td><c:out value="${user.city}" /></td>
-									<td style="text-align: center">
+									<td style="text-align: center;">
 										<form action="<c:url value="edit"/>" method="post">
 											<input type="hidden" name="id" value="${user.id}"> <input
 												type="submit" class="btn btn-primary" value="Sửa"
 											>
 										</form>
 									</td>
-									<td style="text-align: center">
+									<td style="text-align: center;">
 										<%
 											if (session.getAttribute("username") == null) {
 														response.sendRedirect("login.jsp");

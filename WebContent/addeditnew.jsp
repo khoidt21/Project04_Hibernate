@@ -35,7 +35,7 @@
          			 </c:if>            
 					
 					<div class="control-group">
-						<label>Tiêu đề</label>
+						<label>Tiêu đề</label> <span style="color:red">(*)</span>
 					</div>
 					<div class="control-group">
 						<div
@@ -47,7 +47,7 @@
 						</div>
 					</div>		
 					<div class="control-group">
-						<label>Mô tả</label>
+						<label>Mô tả</label> <span style="color:red">(*)</span>
 					</div>
 					<div class="control-group">
 						<div
@@ -57,7 +57,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>Nội dung</label>
+						<label>Nội dung</label> <span style="color:red">(*)</span>
 					</div>
 					<div class="control-group">
 						<div
@@ -67,7 +67,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label>Tác giả</label>
+						<label>Tác giả</label> <span style="color:red">(*)</span>
 					</div>
 					<div class="control-group">
 						<div
@@ -152,25 +152,37 @@ tinymce.init({
 						$('#form1')
 								.submit(
 										function(e) {
-											var username = $('#username').val();
+											var username = $('#title').val();
+											var description = $('#description').val();
+											var content = $('#content').val();
+											var author = $('#author').val();
+											
 											var valid = true;
 											$(".error").remove();
 											if (username.length < 1) {
-												$('#username')
+												$('#title')
 														.after(
 																'<span class="error" style="color:red">This field is required</span>');
 												valid = false;
-											} else {
-												var regEx = /^[A-Za-z\s]+$/;
-												var validName = regEx
-														.test(username);
-												if (!validName) {
-													$('#username')
-															.after(
-																	'<span class="error" style="color:red">The name must be a characters and name Vietnamese without accents</span>');
-													valid = false;
-												}
+											} 
+											if (description.length < 1) {
+												$('#description')
+														.after(
+																'<span class="error" style="color:red">This field is required</span>');
+												valid = false;
 											}
+											if (content.length < 1) {
+												$('#content')
+														.after(
+																'<span class="error" style="color:red">This field is required</span>');
+												valid = false;
+											} 
+											if (author.length < 1) {
+												$('#author')
+														.after(
+																'<span class="error" style="color:red">This field is required</span>');
+												valid = false;
+											} 
 											
 											return valid;
 										});
