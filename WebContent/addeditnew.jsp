@@ -125,6 +125,9 @@
 }
 .mce-notification {display: none !important;}
 </style>
+
+
+
 <script type="text/javascript">
 tinymce.init({
 	  selector: 'textarea#content',
