@@ -17,6 +17,8 @@ import org.hibernate.cfg.Configuration;
 
 import com.hibernate.been.User;
 
+import jdk.nashorn.internal.ir.Flags;
+
 public class UserDAO {
 
 	Configuration configuration = new Configuration().configure();
@@ -128,10 +130,11 @@ public class UserDAO {
 	// user dang dang nhap khong xoa duoc
 	public boolean deleteUser(int id, String uLogin) {
 		Transaction transaction = null;
+		boolean flagDel = false;
 		try {
 			Session session = sessionFactory.openSession();
 			transaction = session.beginTransaction();
-			boolean flagDel = false;
+			
 			List<User> listUser = session.createQuery("FROM User where id ='" + id + "'").list();
 			Iterator<User> iterator = listUser.iterator();
 			while (iterator.hasNext()) {
@@ -144,6 +147,7 @@ public class UserDAO {
 				User user1 = (User) session.get(User.class, id);
 				session.delete(user1);
 				transaction.commit();
+				
 			}
 
 		} catch (Exception e) {
@@ -152,6 +156,6 @@ public class UserDAO {
 			}
 			e.printStackTrace();
 		}
-		return true;
+		return flagDel;
 	}
 }

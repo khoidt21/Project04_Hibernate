@@ -16,6 +16,8 @@ import com.hibernate.been.User;
 import com.hibernate.dao.NewDAO;
 import com.hibernate.dao.UserDAO;
 
+import sun.security.krb5.internal.tools.Ktab;
+
 /**
  * Servlet implementation class UserControllerServlet
  */
@@ -124,20 +126,21 @@ public class UserControllerServlet extends HttpServlet {
 			String userId = request.getParameter("id");
 			String uLogin = request.getParameter("userLogin");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminform.jsp");			
-			boolean flag = false;
 			
-		    flag = userDAO.deleteUser(Integer.parseInt(userId), uLogin);
-			if(flag == false) {
-	
-				List<User> listUser = userDAO.getAllUser();
-				request.setAttribute("listUser",listUser);
-				request.setAttribute("msg","Admin đang đăng nhập không xóa được.");
-				requestDispatcher.forward(request, response);
-			}
-			else {
+			boolean ktcheck = userDAO.deleteUser(Integer.parseInt(userId), uLogin);
+			
+			if(ktcheck == true) {
 				List<User> listUser = userDAO.getAllUser();
 				request.setAttribute("listUser",listUser);
 				request.setAttribute("msg","Xóa admin thành công.");
+				
+				requestDispatcher.forward(request, response);
+			}
+			else {
+				request.setAttribute("msg","Admin đang đăng nhập không xóa được.");
+				List<User> listUser = userDAO.getAllUser();
+				request.setAttribute("listUser",listUser);
+				
 				requestDispatcher.forward(request, response);
 			}
 		}
