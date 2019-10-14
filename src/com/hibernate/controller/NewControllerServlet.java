@@ -97,12 +97,10 @@ public class NewControllerServlet extends HttpServlet {
 			try {	
 				News news = new News(title, description, content,publisher, author,released);
 				newDAO.addNew(news);
-				request.setAttribute("msg","Add new success");
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("newsform.jsp");
-				String mgs = "Add success";
 				List<News> listNew = newDAO.getAllNew();
 				request.setAttribute("listNew",listNew);
-				request.setAttribute("addsuccess",mgs);
+				request.setAttribute("msg","Thêm tin tức thành công");
 				requestDispatcher.forward(request, response);
 				
 			} catch (Exception e) {
@@ -137,7 +135,7 @@ public class NewControllerServlet extends HttpServlet {
 			else {
 				newDAO.deleteNew(Integer.parseInt(newId));
 				List<News> listNew = newDAO.getAllNew();
-				request.setAttribute("msg", "Delete new success");
+				request.setAttribute("msg", "Xóa tin tức thành công");
 				request.setAttribute("listNew",listNew);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("newsform.jsp");
 				requestDispatcher.forward(request, response);
@@ -166,7 +164,7 @@ public class NewControllerServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("newsform.jsp");
 			List<News> listNew = newDAO.getAllNew();
 			request.setAttribute("listNew",listNew);
-			request.setAttribute("msg","Update new success");
+			request.setAttribute("msg","Cập nhập tin tức thành công");
 			requestDispatcher.forward(request, response);
 			
 		}

@@ -13,14 +13,16 @@
     <servlet-name>LogoutControllerServlet</servlet-name>
     <url-pattern>/logoutcontrollerservlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
-    <servlet-name>UserController</servlet-name>
-    <servlet-class>com.hibernate.controller.UserController</servlet-class>
+    <servlet-name>UserControllerServlet</servlet-name>
+    <servlet-class>com.hibernate.controller.UserControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UserController</servlet-name>
-    <url-pattern>/usercontroller</url-pattern>
+    <servlet-name>UserControllerServlet</servlet-name>
+    <url-pattern>/usercontrollerservlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>NewController</servlet-name>
     <servlet-class>com.hibernate.controller.NewController</servlet-class>
@@ -31,7 +33,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>add</servlet-name>
-    <servlet-class>com.hibernate.controller.AddControllerServlet</servlet-class>
+    <servlet-class>com.hibernate.controller.UserControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>add</servlet-name>
@@ -87,7 +89,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>edit</servlet-name>
-    <servlet-class>com.hibernate.controller.AddControllerServlet</servlet-class>
+    <servlet-class>com.hibernate.controller.UserControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>edit</servlet-name>
@@ -95,7 +97,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>update</servlet-name>
-    <servlet-class>com.hibernate.controller.AddControllerServlet</servlet-class>
+    <servlet-class>com.hibernate.controller.UserControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>update</servlet-name>
@@ -103,7 +105,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>delete</servlet-name>
-    <servlet-class>com.hibernate.controller.AddControllerServlet</servlet-class>
+    <servlet-class>com.hibernate.controller.UserControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>delete</servlet-name>

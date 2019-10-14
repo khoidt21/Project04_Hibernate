@@ -138,11 +138,13 @@
 		<!------list user------->
 		<c:if test="${user == null}">
 		<div class="row">
-			<div class="col-lg-8 mx-auto" style="margin-top: 20px">
+			<div class="col-lg-12 mx-auto" style="margin-top: 20px">
 				<h5>Danh sách Administrator</h5>
-				<% if(null !=request.getAttribute("addsuccess")){
-					out.println("addsuccess");
-				} %>
+				<%
+						if (request.getAttribute("msg") != null) {
+							out.println(request.getAttribute("msg"));
+						}
+				%>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
@@ -214,6 +216,10 @@
 											var username = $('#username').val();
 											var password1 = $('#password1').val();
 											var password2 = $('#password2').val();
+											var email = $('#email').val();
+											var phone = $('#phone').val();
+											var city = $('#city').val();
+											
 											var valid = true;
 											$(".error").remove();
 											if (username.length < 1) {
@@ -249,6 +255,44 @@
 												.after(
 														'<span class="error" style="color:red">password 2 must be the same as password 1</span>');
 												 valid = false;
+											}
+											if (email.length < 1) {
+												$('#email')
+														.after(
+																'<span class="error" style="color:red">This field is required</span>');
+												valid = false;
+											} else {
+												var regEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+												var validEmail = regEx
+														.test(email);
+												if (!validEmail) {
+													$('#email')
+															.after(
+																	'<span class="error" style="color:red">Enter a valid email</span>');
+													valid = false;
+												}
+											}
+											if (phone.length < 1) {
+												$('#phone')
+														.after(
+																'<span class="error" style="color:red">This field is required</span>');
+												valid = false;
+											} else {
+												var regEx = /^\d{10}$/;
+												var validPhone = regEx
+														.test(phone);
+												if (!validPhone) {
+													$('#phone')
+															.after(
+																	'<span class="error" style="color:red">Enter a valid phone.Min length of digits should be 10</span>');
+													valid = false;
+												}
+											}
+											if(city.length < 1){
+												$('#city')
+												.after(
+														'<span class="error" style="color:red">This field is required</span>');
+													valid = false;
 											}
 											return valid;
 										});
