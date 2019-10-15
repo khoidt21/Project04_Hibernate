@@ -29,7 +29,7 @@ public class NewDAO {
 		Session session = sessionFactory.openSession();	
 		try {
 			transaction = session.beginTransaction();
-			listNew = session.createQuery("FROM News").list();
+			listNew = session.createQuery("FROM News ORDER BY publisher desc").list();
 			transaction.commit();
 		}
 		catch (Exception e) {

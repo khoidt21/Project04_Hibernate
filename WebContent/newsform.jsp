@@ -50,7 +50,7 @@
 									</c:if>
 								</td>
 								<td><fmt:formatDate value="${news.publisher}"
-										var="formattedDate" type="date" pattern="MM-dd-yyyy"
+										var="formattedDate" type="date" pattern="dd-MM-yyyy"
 									/> <c:out value="${formattedDate}" /></td>
 								<td style="text-align:center">
 									<form action="<c:url value="viewnew"/>" method="post">

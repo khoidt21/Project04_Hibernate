@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     
 <!-- Contact Section -->
 <section class="page-section" id="contact">
@@ -17,9 +18,13 @@
 				<div class="post-preview">
 						<h2 class="post-title"><c:out value="${news.title}"/></h2>
 						<h3 class="post-subtitle"><c:out value="${news.description}"/></h3>
-					
 					<p class="post-meta">
-						Posted by <c:out value="${news.author}"/> on September 24, 2019
+						Tác giả: <c:out value="${news.author}"/> 
+					</p>
+					<p>	
+						Ngày: <fmt:formatDate value="${news.publisher}"
+										var="formattedDate" type="date" pattern="dd-MM-yyyy"
+									/> <c:out value="${formattedDate}" />
 					</p>
 				</div>
 				<hr>
@@ -35,12 +40,12 @@
 <%@ include file="footer.jsp"%>
 </body>
 <style>
-
 h2.post-title{
 	color: #000 !important;
 }
 h3.post-subtitle{
 	color: #212529 !important;
+	font-weight: normal !important;
 }
 .post-preview>.post-meta>a{
 	color: #212529 !important;
@@ -60,6 +65,7 @@ h3.post-subtitle{
 .footer {
 	background-color: rgba(5, 42, 62, 1) !important;
 }
+
 </style>
 </html>
 </html>
