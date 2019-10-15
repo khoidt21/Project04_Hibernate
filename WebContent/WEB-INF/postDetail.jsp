@@ -15,7 +15,25 @@
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto" style="margin-top: 20px">
 				<div class="post-preview">
-					
+					<%
+						String username = (String) session.getAttribute("username");
+						if (session.getAttribute("isNew") != null) {
+							if ((boolean) session.getAttribute("isNew")) {
+								session.setAttribute("isNew", false);
+					%>
+					<h3>
+						Welcome to the Board,
+						<%=username%></h3>
+					<%
+						} else {
+					%>
+					<h3>
+						Welcome back-reader,
+						<%=username%></h3>
+					<%
+						}
+						}
+					%>
 				</div>
 				<div class="post-preview">
 					<h2 class="post-title">
@@ -39,7 +57,7 @@
 						<c:out value="${news.author}" />
 					</p>
 					<p class="post-status-new">
-						Tình trang:
+						Tình trạng:
 						<c:if test="${news.released==1}">
 							<c:out value="Đã xuất bản" />
 						</c:if>

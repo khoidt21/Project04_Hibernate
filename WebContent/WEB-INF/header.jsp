@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +18,7 @@
 <link href="vendor/fontawesome-free/css/css1.css" rel="stylesheet"
 	type="text/css"
 >
-
 <script src="vendor/jquery/tinymce.js"></script>
-
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css"
 >
@@ -53,11 +50,36 @@
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="post.jsp"
 					>Tin tức</a></li>
+					<%
+						String uName = (String) session.getAttribute("username");
+						if (uName != null) {
+					%>
+					<li class="nav-item mx-0 mx-lg-1" id="menu-item"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="UserControllerServlet"
+					>Quản Lý Tài khoản</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="login.jsp" target="_blank"
+						href="NewControllerServlet"
+					>Quản Lý Tin tức</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="post.jsp"
+					>Tài khoản: <%=uName%></a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="LogOutServlet"
+					>Thoát</a></li>
+					<%
+						} else {
+					%>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="login.jsp"
 					>Đăng nhập</a></li>
-					
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>

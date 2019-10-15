@@ -48,7 +48,8 @@ public class LoginControllerServlet extends HttpServlet {
 		if(username.trim().length() >=0 && username !=null && password.trim().length() > 0 && password !=null) {
 			boolean flag = userDAO.login(username, password);
 			if(flag) {
-				session.setAttribute("username", username);
+				request.getSession().setAttribute("username", username);
+				request.getSession().setAttribute("isNew", true);
 				response.sendRedirect("welcome.jsp");
 			}
 			else {

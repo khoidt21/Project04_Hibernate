@@ -55,14 +55,18 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="post.jsp"
+					>Tin tức</a></li>
 					<li class="nav-item mx-0 mx-lg-1" id="menu-item"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="UserControllerServlet"
-					>Tài khoản</a></li>
+					>Quản Lý Tài khoản</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="NewControllerServlet"
-					>Tin tức</a></li>
+					>Quản Lý Tin tức</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="LogOutServlet"
