@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>DemoWeb2</display-name>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>post.jsp</welcome-file>
     <welcome-file>login.jsp</welcome-file>
     <welcome-file>register.jsp</welcome-file>
   </welcome-file-list>
@@ -14,17 +14,14 @@
     <servlet-name>LogoutControllerServlet</servlet-name>
     <url-pattern>/logoutcontrollerservlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ListNewFrontendServlet</servlet-name>
     <servlet-class>com.hibernate.controller.ListNewFrontendServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListNewFrontendServlet</servlet-name>
-    <url-pattern>/index.jsp</url-pattern>
+    <url-pattern>/post.jsp</url-pattern>
   </servlet-mapping>
-
-  
   <servlet>
     <servlet-name>UserControllerServlet</servlet-name>
     <servlet-class>com.hibernate.controller.UserControllerServlet</servlet-class>
@@ -121,14 +118,16 @@
     <servlet-name>LoginControllerServlet</servlet-name>
     <url-pattern>/logincontrollerservlet</url-pattern>
   </servlet-mapping>
+    
   <servlet>
-    <servlet-name>Success</servlet-name>
-    <servlet-class>com.hibernate.controller.Success</servlet-class>
+    <servlet-name>postdetail</servlet-name>
+    <servlet-class>com.hibernate.controller.PostDetailServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Success</servlet-name>
-    <url-pattern>/success</url-pattern>
+    <servlet-name>postdetail</servlet-name>
+    <url-pattern>/postdetail</url-pattern>
   </servlet-mapping>
+  
   <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>

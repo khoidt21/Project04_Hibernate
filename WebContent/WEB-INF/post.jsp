@@ -16,23 +16,20 @@
 			<div class="col-lg-8 col-md-10 mx-auto" style="margin-top:20px;">	
 				<c:forEach items="${listNew}" var="news">
 				<div class="post-preview">
-						<h2 class="post-title"><c:out value="${news.title}"/></h2>
+						<a href="postdetail?id=<c:out value="${news.id}"/>"><h2 class="post-title"><c:out value="${news.title}"/></h2></a>
 						<h3 class="post-subtitle"><c:out value="${news.description}"/></h3>
-					<p class="post-meta">
-						Tác giả: <c:out value="${news.author}"/> 
-					</p>
 					<p>	
 						Ngày: <fmt:formatDate value="${news.publisher}"
 										var="formattedDate" type="date" pattern="dd-MM-yyyy"
 									/> <c:out value="${formattedDate}" />
 					</p>
+					<p class="post-meta">
+						Tác giả: <c:out value="${news.author}"/> 
+					</p>
 				</div>
 				<hr>
 				</c:forEach>
-				<!-- Pager -->
-				<div class="clearfix">
-					<a class="btn btn-primary float-right" href="#">Older Posts →</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -55,7 +52,7 @@ h3.post-subtitle{
 }
 
 .bg-secondary {
-	background-color: #000 !important;
+	background-color: #dd3d31 !important;
 }
 
 .copyright {
@@ -63,7 +60,7 @@ h3.post-subtitle{
 }
 
 .footer {
-	background-color: rgba(5, 42, 62, 1) !important;
+	background-color: #dd3d31 !important;
 }
 
 </style>
