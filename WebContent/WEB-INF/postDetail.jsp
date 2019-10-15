@@ -77,6 +77,8 @@
 .post-content {
 	font-style: italic;
 	font-size: 15px !important;
+	font-family: Nunito;
+	letter-spacing: .0625em;
 }
 
 h2.post-title {
