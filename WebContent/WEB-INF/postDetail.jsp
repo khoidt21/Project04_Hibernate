@@ -15,20 +15,7 @@
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto" style="margin-top: 20px">
 				<div class="post-preview">
-					<%
-						Integer hitsCount = (Integer) application.getAttribute("hitCounter");
-						if (hitsCount == null || hitsCount == 0) {
-							/* First visit */
-							out.println("Welcome to my website!");
-							hitsCount = 1;
-						} else {
-							/* return visit */
-							out.println("Welcome back to my website!");
-							hitsCount += 1;
-						}
-						application.setAttribute("hitCounter", hitsCount);
-					%>
-					 <p>Total number of visits: <%= hitsCount%></p>
+					
 				</div>
 				<div class="post-preview">
 					<h2 class="post-title">
