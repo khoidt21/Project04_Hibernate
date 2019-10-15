@@ -113,7 +113,7 @@
 }
 
 .bg-secondary {
-	background-color: #000 !important;
+	background-color: #dd3d31 !important;
 }
 
 .copyright {
@@ -121,7 +121,7 @@
 }
 
 .footer {
-	background-color: rgba(5, 42, 62, 1) !important;
+	background-color: #dd3d31 !important;
 }
 .mce-notification {display: none !important;}
 </style>

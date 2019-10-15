@@ -147,6 +147,8 @@ public class NewControllerServlet extends HttpServlet {
 	}
 	private void updatenew(HttpServletRequest request,HttpServletResponse response) {
 		try {
+			
+			
 			NewDAO newDAO = new NewDAO();
 			int newsId = Integer.parseInt(request.getParameter("id"));
 			String newTitle = request.getParameter("title");
@@ -154,9 +156,21 @@ public class NewControllerServlet extends HttpServlet {
 			String newContent = request.getParameter("content");
 			String newAuthor = request.getParameter("author");
 			
+			System.out.println("===================" + newAuthor);
+			
 			java.util.Date myDate = new java.util.Date();
 			java.sql.Date publisher = new java.sql.Date(myDate.getTime());
-			int released = Integer.parseInt(request.getParameter("released"));
+			
+			//int released = Integer.parseInt(request.getParameter("released"));
+			
+			int released;
+			String checkbox = request.getParameter("released");
+			if(checkbox !=null) {
+				released = 1;
+			}
+			else {
+				released = 0;
+			}
 			
 			News news = new News(newsId,newTitle,newDescription,newContent,publisher,newAuthor,released);
 			newDAO.updateNew(news);

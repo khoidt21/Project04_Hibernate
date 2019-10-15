@@ -31,6 +31,7 @@ public class News {
 		this.description = description;
 		this.content = content;
 		this.publisher = publisher;
+		this.author = author;
 		this.released = released;
 	}
 	
