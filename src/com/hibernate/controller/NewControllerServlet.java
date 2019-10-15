@@ -172,7 +172,7 @@ public class NewControllerServlet extends HttpServlet {
 			ex.printStackTrace();
 		}
 	}
-	private void loadnew(HttpServletRequest request,HttpServletResponse response) {
+	public void loadnew(HttpServletRequest request,HttpServletResponse response) {
 		try {
 			NewDAO newDAO = new NewDAO();
 			List<News> listNew = newDAO.getAllNew();

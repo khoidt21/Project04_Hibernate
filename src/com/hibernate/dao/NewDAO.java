@@ -30,7 +30,6 @@ public class NewDAO {
 		try {
 			transaction = session.beginTransaction();
 			listNew = session.createQuery("FROM News").list();
-			//System.out.println("============ NEW DAO " + listNew.size());
 			transaction.commit();
 		}
 		catch (Exception e) {

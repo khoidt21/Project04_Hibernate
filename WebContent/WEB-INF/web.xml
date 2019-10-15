@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>DemoWeb2</display-name>
   <welcome-file-list>
-   
+    <welcome-file>index.jsp</welcome-file>
     <welcome-file>login.jsp</welcome-file>
     <welcome-file>register.jsp</welcome-file>
   </welcome-file-list>
@@ -16,21 +16,22 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>ListNewFrontendServlet</servlet-name>
+    <servlet-class>com.hibernate.controller.ListNewFrontendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListNewFrontendServlet</servlet-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </servlet-mapping>
+
+  
+  <servlet>
     <servlet-name>UserControllerServlet</servlet-name>
     <servlet-class>com.hibernate.controller.UserControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserControllerServlet</servlet-name>
     <url-pattern>/usercontrollerservlet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>NewController</servlet-name>
-    <servlet-class>com.hibernate.controller.NewController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>NewController</servlet-name>
-    <url-pattern>/newcontroller</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>add</servlet-name>
